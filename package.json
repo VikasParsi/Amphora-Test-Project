@@ -1,0 +1,39 @@
+{
+  "name": "VIKAS PARSI_Amphora-test-project",
+  "version": "1.0.0",
+  "description": "Amphora Automation Test Project",
+  "main": "index.js",
+  "author": "VIKAS PARSI",
+  "license": "ISC",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "test": "cypress run --config video=true",
+    "test:chrome": "cypress run --browser chrome --config video=true",
+    "test:firefox": "cypress run --browser firefox --config video=true",
+    "test:html": "cypress run --config video=true && node cypress/scripts/generate-report.js",
+    "report": "node cypress/scripts/generate-report.js",
+    "clean:reports": "rm -rf cypress/reports"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4",
+    "cypress": "^14.1.0",
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "esbuild": "^0.25.0",
+    "multiple-cucumber-html-reporter": "^3.9.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/support/step_definitions/**/*.js"
+    ],
+    "json": {
+      "enabled": true,
+      "output": "cypress/reports/json/cucumber-report.json",
+      "formatter": "json"
+    },
+    "features": [
+      "cypress/e2e/**/*.feature"
+    ],
+    "omitFilePath": true
+  }
+}
